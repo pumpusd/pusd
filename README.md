@@ -67,7 +67,7 @@ PUSD is intended as a **decentralized primitive for trading, DeFi applications, 
 
 ### Local Setup
 ```bash
-git clone https://github.com/your-org/pumpusd
+git clone https://github.com/pumpusd/pusd
 cd pumpusd
 
 # Build program
