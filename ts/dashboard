@@ -1,1 +1,66 @@
+#!/usr/bin/env ts-node
+
+/**
+ * PumpUSD Dashboard
+ *
+ * This script queries on-chain state and prints basic system metrics.
+ * In production, you’d expose these metrics via a web API or push them
+ * to Grafana/Prometheus dashboards.
+ *
+ * Usage:
+ *   ts-node ts/dashboard/index.ts --rpc http://127.0.0.1:8899
+ */
+
+import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
+import yargs from "yargs";
+import { hideBin } from "yargs/helpers";
+
+// ----------------------
+// CLI args
+// ----------------------
+const argv = yargs(hideBin(process.argv))
+  .option("rpc", {
+    type: "string",
+    description: "RPC endpoint",
+    default: clusterApiUrl("devnet"),
+  })
+  .parseSync();
+
+// ----------------------
+// Setup connection
+// ----------------------
+const connection = new Connection(argv.rpc, "confirmed");
+
+// Replace with your program + mint addresses later
+const PUSD_PROGRAM_ID = new PublicKey("PUSD222222222222222222222222222222222222222");
+const PUSD_MINT = new PublicKey("11111111111111111111111111111111");
+
+console.log("📊 PumpUSD Dashboard started");
+console.log("RPC Endpoint:", argv.rpc);
+
+// ----------------------
+// Example metrics fetcher
+// ----------------------
+async function getMetrics() {
+  console.log("\n=== PumpUSD System Metrics ===");
+
+  // Total supply of PUSD (placeholder example)
+  try {
+    const supply = await connection.getTokenSupply(PUSD_MINT);
+    console.log("💵 PUSD Supply:", supply.value.uiAmountString);
+  } catch (err) {
+    console.log("💵 PUSD Supply: (mock) 0");
+  }
+
+  // Placeholder: would normally fetch vault state, debt ratios, etc.
+  console.log("🏦 Collateral Types: USDC, wSOL");
+  console.log("📈 Global Debt Ceiling: 10,000,000 PUSD");
+  console.log("⚠️ At-risk positions: 0 (mock)");
+}
+
+// Run once at start
+getMetrics();
+
+// Optional: refresh every 60 seconds
+setInterval(getMetrics, 60_000);
 
