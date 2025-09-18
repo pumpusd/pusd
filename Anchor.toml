@@ -1,1 +1,19 @@
+[programs.localnet]
+pusd = "PUSD111111111111111111111111111111111111111"
+
+[programs.devnet]
+pusd = "PUSD222222222222222222222222222222222222222"
+
+[programs.mainnet]
+pusd = "PUSD333333333333333333333333333333333333333"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./ts/tsconfig.json -t 1000000 tests/**/*.test.ts"
 
