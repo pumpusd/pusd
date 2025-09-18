@@ -1,1 +1,24 @@
-
+{
+  "name": "pumpusd-ts",
+  "version": "0.1.0",
+  "description": "Off-chain tooling for PumpUSD ($PUSD) stablecoin protocol",
+  "main": "index.js",
+  "scripts": {
+    "keeper": "ts-node ts/keeper/cli.ts",
+    "dashboard": "ts-node ts/dashboard/index.ts",
+    "test": "mocha -r ts-node/register tests/**/*.test.ts"
+  },
+  "author": "PumpUSD Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "@solana/web3.js": "^1.95.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.2.2",
+    "mocha": "^10.2.0",
+    "@types/node": "^20.8.2",
+    "@types/yargs": "^17.0.32"
+  }
+}
